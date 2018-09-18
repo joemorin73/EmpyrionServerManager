@@ -1,0 +1,22 @@
+﻿---
+VotingApiServerKey: "Get yours from https://empyrion-servers.com/"
+Cumulative: true
+VotingRewards:
+- MinVotesNeeded: 0
+  Rewards:
+  - Id: 1301
+    Amount: 123
+  - Id: 1302
+    Amount: 456
+- MinVotesNeeded: 100
+  Rewards:
+  - Id: 1401
+    Amount: 123
+  - Id: 1402
+    Amount: 456
+- MinVotesNeeded: 200
+  Rewards:
+  - Id: 1501
+    Amount: 123
+  - Id: 1502
+    Amount: 456

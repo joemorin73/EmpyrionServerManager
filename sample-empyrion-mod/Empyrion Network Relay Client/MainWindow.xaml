@@ -1,0 +1,246 @@
+﻿<Window x:Class="ENRC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ENRC"
+        mc:Ignorable="d"
+        Title="Empyrion Mod Server" Height="1000" Width="1500"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <local:MainWindowDataContext x:Name="mainWindowDataContext"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Margin="2" Grid.Column="0" Grid.Row="0" x:Name="btnGetPlayfields" Click="btnGetPlayfields_Click" Content="Get Playfields"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="1" x:Name="btnGetPlayerList" Click="btnGetPlayerList_Click" Content="Get Playerlist"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="2" x:Name="btnGetDediStats" Click="btnGetDediStats_Click" Content="Get DediStats"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="3" x:Name="btnGetPlayfieldStats" Click="btnGetPlayfieldStats_Click" Content="Get PlayfieldStats"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="4" x:Name="btnGetStructureList" Click="btnGetStructureList_Click" Content="Get Structurelist"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="5" x:Name="btnGetStructureUpdate" Click="btnGetStructureUpdate_Click" Content="Structureupdate"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="6" x:Name="btnGetPlayerInfo" Click="btnGetPlayerInfo_Click" Content="Get Playerinfo"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="7" x:Name="btnSentMessage" Click="btnSentMessage_Click" Content="Sent Message to all"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="8" x:Name="btnGetFactions" Click="btnGetFactions_Click" Content="Get Factions"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="9" x:Name="btnGetAlliances" Click="btnGetAlliances_Click" Content="Get Alliances"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="10" x:Name="btnGetEntities" Click="btnGetEntities_Click" Content="Get Entities"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="11" x:Name="btnGetNewID" Click="btnGetNewID_Click" Content="Get New ID"/>
+
+
+        <Label Margin="2" Grid.Column="0" Grid.Row="12" Content="Enable Output of:" FontWeight="Bold" VerticalContentAlignment="Bottom"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="13" Content="SendRequest" IsChecked="{Binding EnableOutput_SendRequest}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="14" Content="Data recieved" IsChecked="{Binding EnableOutput_DataRecieved}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="15" Content="Player List" IsChecked="{Binding EnableOutput_Event_Player_List}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="16" Content="Player Info" IsChecked="{Binding EnableOutput_Event_Player_Info}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="17" Content="Player Inventory" IsChecked="{Binding EnableOutput_Event_Player_Inventory}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="18" Content="Entity PosAndRot" IsChecked="{Binding EnableOutput_Event_Entity_PosAndRot}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="19" Content="Player Credits" IsChecked="{Binding EnableOutput_Event_Player_Credits}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="20" Content="GlobalStructure List" IsChecked="{Binding EnableOutput_Event_GlobalStructure_List}"/>
+        <CheckBox Margin="2" Grid.Column="0" Grid.Row="21" Content="Playfield List" IsChecked="{Binding EnableOutput_Event_Playfield_List}"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="22" x:Name="btnClearOutput" Click="btnClearOutput_Click" Content="Clear output"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="23" x:Name="btnReloadPlayfield" Click="btnReloadPlayfield_Click" Content="Reload playfield files"/>
+        <Button Margin="2" Grid.Column="0" Grid.Row="24" x:Name="btnGetBannedPlayers" Click="btnGetBannedPlayers_Click" Content="Get banned players"/>
+
+        <TextBox Margin="6" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="6" x:Name="txtCommand" KeyUp="txtCommand_KeyUp"/>
+        <Button Margin="2" Grid.Column="7" Grid.Row="0" x:Name="btnSentCommand" Click="btnSentCommand_Click" Content="Sent command"/>
+        <Label  Margin="2" Grid.Column="8" Grid.Row="0" Content="{Binding Connected}" FontWeight="Bold" FontSize="16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+        <DataGrid Margin="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="1" AutoGenerateColumns="False" ItemsSource="{Binding onlinePlayfields}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Playfields" Binding="{Binding}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="2" Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="1" AutoGenerateColumns="False" ItemsSource="{Binding onlinePlayer}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Player" Binding="{Binding}" Width="*"/>                
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="2" Grid.Column="3" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="4" AutoGenerateColumns="False" ItemsSource="{Binding structures}" IsReadOnly="True" x:Name="dgStructures">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding type}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Faction Group" Binding="{Binding factionGroup}"/>
+                <DataGridTextColumn Header="Faction Id" Binding="{Binding factionId}"/>
+                <DataGridTextColumn Header="Blocks" Binding="{Binding cntBlocks}"/>
+                <DataGridTextColumn Header="Devices" Binding="{Binding cntDevices}"/>
+                <DataGridTextColumn Header="Lights" Binding="{Binding cntLights}"/>
+                <DataGridTextColumn Header="Triangles" Binding="{Binding cntTriangles}"/>
+                <DataGridTextColumn Header="Class" Binding="{Binding classNr}"/>
+                <DataGridTextColumn Header="Fuel" Binding="{Binding fuel}"/>
+                <DataGridTextColumn Header="Powered" Binding="{Binding powered}"/>
+                <DataGridTextColumn Header="Playfield" Binding="{Binding playfield}"/>
+                <DataGridTextColumn Header="Pos z" Binding="{Binding pos.z}"/>
+                <DataGridTextColumn Header="Pos y" Binding="{Binding pos.y}"/>
+                <DataGridTextColumn Header="Pos x" Binding="{Binding pos.x}"/>
+                <DataGridTextColumn Header="Rot z" Binding="{Binding rot.z}"/>
+                <DataGridTextColumn Header="Rot y" Binding="{Binding rot.y}"/>
+                <DataGridTextColumn Header="Rot x" Binding="{Binding rot.x}"/>
+                <DataGridTextColumn Header="Last visited" Binding="{Binding lastVisited}"/>
+                <DataGridTextColumn Header="Docked ships" Binding="{Binding dockedships_Str}"/>
+                <DataGridTextColumn Header="Coretype" Binding="{Binding coreType}"/>
+                <DataGridTextColumn Header="PilotId" Binding="{Binding pilotId}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Change location" x:Name="mnuChangeLocationStructure" Click="mnuChangeLocationStructure_Click"/>
+                    <MenuItem Header="Destroy" x:Name="mnuDestroyStructure" Click="mnuDestroyStructure_Click"/>
+                    <MenuItem Header="Get BlockStatistics" x:Name="mnuGet_Structure_BlockStatistics" Click="mnuGet_Structure_BlockStatistics_Click"/>
+                    <MenuItem Header="Touch" x:Name="mnuTouch" Click="mnuTouch_Click"/>
+                    <MenuItem Header="Get Export Info" x:Name="mnuGetExportInfo" Click="mnuGetExportInfo_Click"/>
+                    <MenuItem Header="Spawn structure" x:Name="mnuImportStructure" Click="mnuImportStructure_Click"/>
+                    <MenuItem Header="Set name" x:Name="mnuSetName" Click="mnuSetName_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid Margin="4,2,2,2" Grid.Column="7" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding entities}" IsReadOnly="True" x:Name="dgEntities">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding type}"/>
+                <DataGridTextColumn Header="Pos z" Binding="{Binding pos.z}"/>
+                <DataGridTextColumn Header="Pos y" Binding="{Binding pos.y}"/>
+                <DataGridTextColumn Header="Pos x" Binding="{Binding pos.x}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Destroy" x:Name="mnuDestroyEntity" Click="mnuDestroyEntity_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid Margin="2" Grid.Column="1" Grid.Row="5" Grid.RowSpan="4" Grid.ColumnSpan="6" x:Name="dgPlayer"  AutoGenerateColumns="False" ItemsSource="{Binding playerInfos}" IsReadOnly="True" SelectionChanged="dgPlayer_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Client ID" Binding="{Binding clientId}"/>
+                <DataGridTextColumn Header="Steam ID" Binding="{Binding steamId}"/>
+                <DataGridTextColumn Header="Steam Owner ID" Binding="{Binding steamOwnerId}"/>
+                <DataGridTextColumn Header="Entity ID" Binding="{Binding entityId}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding playerName}"/>
+                <DataGridTextColumn Header="Playfield" Binding="{Binding playfield}"/>
+                <DataGridTextColumn Header="Start Playfield" Binding="{Binding startPlayfield}"/>
+                <DataGridTextColumn Header="Faction Group" Binding="{Binding factionGroup}"/>
+                <DataGridTextColumn Header="Faction ID" Binding="{Binding factionId}"/>
+                <DataGridTextColumn Header="Faction Role" Binding="{Binding factionRole}"/>
+                <DataGridTextColumn Header="Origin" Binding="{Binding origin}"/>
+                <DataGridTextColumn Header="Pos z" Binding="{Binding pos.z}"/>
+                <DataGridTextColumn Header="Pos y" Binding="{Binding pos.y}"/>
+                <DataGridTextColumn Header="Pos x" Binding="{Binding pos.x}"/>
+                <DataGridTextColumn Header="Rot z" Binding="{Binding rot.z}"/>
+                <DataGridTextColumn Header="Rot y" Binding="{Binding rot.y}"/>
+                <DataGridTextColumn Header="Rot x" Binding="{Binding rot.x}"/>
+                <DataGridTextColumn Header="Health" Binding="{Binding health}"/>
+                <DataGridTextColumn Header="Health Max" Binding="{Binding healthMax}"/>
+                <DataGridTextColumn Header="Oxygen" Binding="{Binding oxygen}"/>
+                <DataGridTextColumn Header="Oxygen Max" Binding="{Binding oxygenMax}"/>
+                <DataGridTextColumn Header="Stamina" Binding="{Binding stamina}"/>
+                <DataGridTextColumn Header="Stamina Max" Binding="{Binding staminaMax}"/>
+                <DataGridTextColumn Header="Died" Binding="{Binding died}"/>
+                <DataGridTextColumn Header="Kills" Binding="{Binding kills}"/>
+                <DataGridTextColumn Header="Credits" Binding="{Binding credits}"/>
+                <DataGridTextColumn Header="Exp" Binding="{Binding exp}"/>
+                <DataGridTextColumn Header="Upgrade" Binding="{Binding upgrade}"/>
+                <DataGridTextColumn Header="BP Remaintime" Binding="{Binding bpRemainingTime}"/>
+                <DataGridTextColumn Header="BP Resources" Binding="{Binding bpResourcesInFactory}"/>
+                <DataGridTextColumn Header="BP Resources count" Binding="{Binding bpResourcesInFactory.Count}"/>
+                <DataGridTextColumn Header="BP Factory" Binding="{Binding bpInFactory}"/>
+                <DataGridTextColumn Header="BP Ready" Binding="{Binding producedPrefabs}"/>
+                <DataGridTextColumn Header="BP Ready count" Binding="{Binding producedPrefabs.Count}" Width="*"/>
+       
+            <!--TODO: toolbar, bag, bpResourcesInFactory, producedPrefabs-->
+
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Credits" x:Name="mnuAddCredits" Click="mnuAddCredits_Click"/>
+                    <MenuItem Header="Change location" x:Name="mnuChangeLocationPlayer" Click="mnuChangeLocationPlayer_Click"/>
+                    <MenuItem Header="Sent message" x:Name="mnuPlayerSendMessage" Click="mnuPlayerSendMessage_Click"/>
+                    <MenuItem Header="Show Dialog" x:Name="mnuPlayerShowDialog" Click="mnuPlayerShowDialog_Click"/>
+                    <MenuItem Header="Finish Blueprint" x:Name="mnuPlayerFinishBP" Click="mnuPlayerFinishBP_Click"/>
+                    <MenuItem Header="Item Exchange" x:Name="mnuItemExchange" Click="mnuItemExchange_Click"/>
+                    <MenuItem Header="Get and remove inventory" x:Name="mnuGetAndRemoveInventory" Click="mnuGetAndRemoveInventory_Click"/>
+                    <MenuItem Header="Add a few items" x:Name="mnuAddItems" Click="mnuAddItems_Click"/>
+                    <MenuItem Header="Replace inventory" x:Name="mnuReplaceInventory" Click="mnuReplaceInventory_Click"/>
+                    <MenuItem Header="Set random stats" x:Name="mnuSetRandomStats" Click="mnuSetRandomStats_Click"/>
+                    <MenuItem Header="Request 3 last client logs" x:Name="mnuRequestLastLogs" Click="mnuRequestLastLogs_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+
+        <DataGrid Margin="4,2,2,2" Grid.Column="7" Grid.Row="5" Grid.RowSpan="4" Grid.ColumnSpan="1" AutoGenerateColumns="False" IsReadOnly="True" x:Name="dgToolbar">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Slot" Binding="{Binding slotIdx}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Count" Binding="{Binding count}"/>
+                <DataGridTextColumn Header="Ammo" Binding="{Binding ammo}"/>
+                <DataGridTextColumn Header="Decay" Binding="{Binding decay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="4,2,2,2" Grid.Column="8" Grid.Row="5" Grid.RowSpan="4" Grid.ColumnSpan="1" AutoGenerateColumns="False" IsReadOnly="True" x:Name="dgBackback">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Slot" Binding="{Binding slotIdx}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Count" Binding="{Binding count}"/>
+                <DataGridTextColumn Header="Ammo" Binding="{Binding ammo}"/>
+                <DataGridTextColumn Header="Decay" Binding="{Binding decay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="2" Grid.Column="1" Grid.Row="9" Grid.RowSpan="16" Grid.ColumnSpan="4" AutoGenerateColumns="False" ItemsSource="{Binding output}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Output" Binding="{Binding}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="4,2,2,2" Grid.Column="5" Grid.Row="9" Grid.RowSpan="16" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding events}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Events" Binding="{Binding}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Margin="4,2,2,2" Grid.Column="7" Grid.Row="9" Grid.RowSpan="16" Grid.ColumnSpan="2" AutoGenerateColumns="False" ItemsSource="{Binding stats}" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Statistics" Binding="{Binding}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

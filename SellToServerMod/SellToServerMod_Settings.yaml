@@ -1,0 +1,32 @@
+﻿---
+SellLocations:
+- BoundingBox:
+    Playfield: Akua2
+    Rect:
+      min:
+        x: -1434
+        y: 48
+        z: 700
+      max:
+        x: -1430
+        y: 51
+        z: 701.5
+  ItemIdToUnitPrice:
+    2415: 1
+    2413: 0.1
+  DefaultPrice: 1.0
+
+- BoundingBox:
+    Playfield: Akua2
+    Rect:
+      min:
+        x: -1439
+        y: 49
+        z: 707.5
+      max:
+        x: -1437.7
+        y: 51
+        z: 710
+  ItemIdToUnitPrice:
+    2415: 1
+    2413: 100
