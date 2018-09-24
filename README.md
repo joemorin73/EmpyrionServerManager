@@ -1,6 +1,13 @@
 # Introduction
 This is a Server Manager for the Empyrion Dedicated Server.  It includes the original code for NCMR by Michael Ghoulding from this repository (https://github.com/MichaelGoulding/EmpyrionNetworkConnectedMods/blob/master/README.md).  We have added a GUI on top of the existing code and expanded the scope of his project to include Managing the Server.  Please do keep in mind that this is one of only 3 C# projects I have been involved with. Im just asking that you all be patient while I get used to all of this :)
 
+# Major Contributors
+
+Plleg - Code involving the Empyrion API, GUI Interaction, NCMR Improvements.
+Chilimeat - Initial Interface Design, File system stuff, Some of the code behind the GUI
+Mortlath - NCMR Code base
+Avreon - NCMR Code Base
+
 # Getting Started
 
 ## Build
