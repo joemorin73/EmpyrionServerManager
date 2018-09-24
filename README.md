@@ -3,10 +3,10 @@ This is a Server Manager for the Empyrion Dedicated Server.  It includes the ori
 
 # Major Contributors
 
-Plleg - Code involving the Empyrion API, GUI Interaction, NCMR Improvements.
-Chilimeat - Initial Interface Design, File system stuff, Some of the code behind the GUI
-Mortlath - NCMR Code base
-Avreon - NCMR Code Base
+1.  Plleg - Code involving the Empyrion API, GUI Interaction, NCMR Improvements.
+2.  Chilimeat - Initial Interface Design, File system stuff, Some of the code behind the GUI
+3.  Mortlath - NCMR Code base
+4.  Avreon - NCMR Code Base
 
 # Getting Started
 
